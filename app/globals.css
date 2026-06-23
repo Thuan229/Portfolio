@@ -1,0 +1,35 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+}
+
+.dark {
+  color-scheme: dark;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background:
+    radial-gradient(circle at 18% 12%, rgba(35, 113, 160, 0.42), transparent 30%),
+    linear-gradient(135deg, #07111f 0%, #0b2237 46%, #020713 100%);
+  color: #f7f4ef;
+}
+
+.dark body {
+  background:
+    radial-gradient(circle at 18% 12%, rgba(35, 113, 160, 0.42), transparent 30%),
+    linear-gradient(135deg, #07111f 0%, #0b2237 46%, #020713 100%);
+  color: #f7f4ef;
+}
+
+::selection {
+  background: #67e8f9;
+  color: #06101d;
+}

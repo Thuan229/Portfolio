@@ -1,0 +1,156 @@
+{
+  "person": {
+    "name": "Tran Minh Thuan",
+    "title": "Product & Growth Marketing Specialist",
+    "tagline": "I turn customer insight, community momentum, and data signals into practical growth systems.",
+    "location": "Ho Chi Minh City, Vietnam",
+    "email": "trminhthuan28@gmail.com",
+    "linkedin": "https://www.linkedin.com/in/minhthuann/",
+    "facebook": "https://www.facebook.com/minhthuan.tran.7334?locale=vi_VN",
+    "cvUrl": "/cv/Tran-Minh-Thuan-CV-En.pdf",
+    "avatar": "/cv/avatar.svg.png"
+  },
+  "about": {
+    "summary": "Growth Marketing Specialist with hands-on experience across community building, marketing research, product marketing, content strategy, and campaign analytics. I enjoy connecting user insight with product positioning, then turning that into measurable acquisition, engagement, and retention loops.",
+    "strengths": [
+      "Blend qualitative customer insight with quantitative marketing analytics.",
+      "Build and nurture communities, especially around gaming and digital products.",
+      "Translate product value into clear campaigns, content systems, and stakeholder-ready reports.",
+      "Use AI automation to reduce repetitive marketing work and speed up research workflows."
+    ],
+    "direction": "I am looking for Product Marketing, Growth Marketing, or Community Growth roles where I can own experiments, understand users deeply, and help products grow through data-informed storytelling."
+  },
+  "competencies": [
+    "Growth Marketing",
+    "Community Building",
+    "Marketing Research",
+    "Product Marketing",
+    "Marketing Analytics",
+    "Content Strategy",
+    "Customer Insight",
+    "Stakeholder Management",
+    "AI Automation",
+    "Data Analysis"
+  ],
+  "career": [
+    {
+      "company": "KATSURA VIET NAM",
+      "role": "PRODUCT MANAGEMENT Specialist / IT Business Analyst (Domain ERP)",
+      "period": "08/2024 - 05/2026",
+      "highlights": [
+        "Collaborated with Japanese stakeholders to gather, analyze, and refine product requirements.",
+        "Conducted user and business workflow analysis to identify opportunities for product improvement.",
+        "Worked closely with cross-functional teams to deliver ERP product enhancements.",
+        "Contributed to platform modernization through PWA implementation and performance optimization initiatives.",
+        "Designed a scalable notification system serving approximately 80,000 users.",
+        "Developed technical drawing management features and supported quality assurance processes."
+      ]
+
+    },
+    {
+      "company": "Edtronaut - AI Adaptive Learning Platform",
+      "role": "GROWTH MARKETING SPECIALIST (Domain EdTech)",
+      "period": "01/2024 - 07/2024",
+      "highlights": [
+        "Grew Zalo Official Account followers from 0 to 4,500 within 6 months.",
+        "Built an AI community of 650 members within 3 weeks of launch.",
+        "Executed Email Marketing campaigns for more than 2,000 potential customers and users.",
+        "Led a 5-member team to successfully organize the AI Transformation & The Future of HR event.",
+        "Planned and managed a webinar on Data from preparation to execution.",
+        "Collaborated with Academic Labs, Hoa Sen University, and Open University on partnership and MOU activities."
+      ]
+    },
+    {
+      "company": "Infina - RealStake Fintech",
+      "role": "GROWTH MARKETING EXECUTIVE (Domain FinTech)",
+      "period": "08/2023 - 08/2024",
+      "highlights": [
+        "Conducted market research, competitor analysis, and user interviews to identify product growth opportunities.",
+        "Developed Go-To-Market strategies for new products and features, including positioning, messaging, and launch planning.",
+        "Managed product content across websites, blogs, mobile applications, and communication channels.",
+        "Planned and executed multi-channel content and communication campaigns to increase product awareness and engagement.",
+        "Collaborated with Marketing, Community, Customer Service, and Product teams to launch campaigns and gather user feedback.",
+        "Designed and executed user acquisition campaigns to drive account registrations, deposits, and trading activities.",
+        "Developed Growth, Retention, Referral, and Loyalty programs to improve customer lifecycle performance.",
+        "Monitored campaign performance and optimized KPIs based on data analysis and user behavior insights."
+      ]
+    },
+    {
+      "company": "FIDT JSC",
+      "role": "GROWTH MARKETING EXECUTIVE (Domain FinTech)",
+      "period": "06/2022 - 12/2023",
+      "highlights": [
+        "Worked closely with C-level executives and department heads on Growth Marketing and community development initiatives.",
+        "Increased website traffic by 20% within 3 months through SEO and content marketing strategies.",
+        "Grew the Vietnam Personal Finance community from 7,000 to 15,000 members within 6 months.",
+        "Implemented SEO strategies for fidt.vn, focusing on personal finance, investing, and financial education topics.",
+        "Organized a forum attended by over 300 executives and senior leaders across banking, securities, real estate, and insurance sectors.",
+        "Scaled Facebook Page followers from 5,000 to 30,000 through content strategy, Facebook Reels, and paid media optimization.",
+        "Produced and edited video content using Canva for personal finance education series and IDP platform tutorials.",
+        "Conducted real estate market research to support content development and marketing campaigns.",
+        "Collaborated with cross-functional teams to execute marketing activities, events, and brand-building initiatives."
+      ]
+    }
+  ],
+  "projects": [
+    {
+      "name": "Finance Community Growth Program",
+      "role": "Community Growth Lead",
+      "goal": "Grow an engaged community around a Finance product and convert social attention into active participation.",
+      "result": "Improved community activity through content cadence, event hooks, and feedback loops.",
+      "kpi": "Update KPI from CV: member growth, engagement rate, event participants, retention.",
+      "tools": ["Facebook Groups", "Discord", "Google Sheets", "Canva", "Meta Business Suite"]
+    },
+    {
+      "name": "Product Marketing Research Sprint",
+      "role": "Marketing Researcher",
+      "goal": "Identify customer pain points, market signals, and messaging angles for product positioning.",
+      "result": "Delivered actionable insight report and campaign recommendations for stakeholders.",
+      "kpi": "Update KPI from CV: survey responses, interview count, insight adoption, campaign lift.",
+      "tools": ["Google Forms", "Google Sheets", "Notion", "ChatGPT"]
+    },
+    {
+      "name": "AI-assisted Content and Reporting Workflow",
+      "role": "Growth Automation Builder",
+      "goal": "Reduce time spent on repetitive research, content ideation, and performance summaries.",
+      "result": "Created a repeatable workflow for content planning, campaign recap, and recruiter Q&A.",
+      "kpi": "Update KPI from CV: hours saved, output volume, reporting turnaround time.",
+      "tools": ["OpenAI API", "n8n", "Google Sheets", "Notion"]
+    }
+  ],
+  "certifications": [
+    {
+      "name": "Infina - RealStake Fintech",
+      "issuer": "Top 10 Infina Marketing Talent 2022",
+      "year": "2022"
+    },
+    {
+      "name": "Infomation Systems",
+      "issuer": "University of Minnesota",
+      "year": "2023"
+    },
+    {
+      "name": "Digital Marketing",
+      "issuer": "University of Economic & Finance",
+      "year": "2024"
+    }
+  ],
+  "faq": [
+    {
+      "question": "Do you have Growth Marketing experience?",
+      "answer": "Yes. Thuan has experience combining customer insight, community building, content strategy, and marketing analytics to design growth activities. This portfolio highlights acquisition, engagement, retention loops, and reporting."
+    },
+    {
+      "question": "What projects have you worked on?",
+      "answer": "Featured projects include Game Community Growth Program, Product Marketing Research Sprint, and AI-assisted Content and Reporting Workflow. Each project includes a goal, result, KPI, and tools used."
+    },
+    {
+      "question": "How strong are you in Marketing Analytics?",
+      "answer": "Thuan can read campaign data, analyze user behavior, synthesize insights, create reports, and recommend next actions. Tools should be updated from the real CV, such as Google Sheets, Looker Studio, GA4, or internal dashboards."
+    },
+    {
+      "question": "Have you managed a Finance community before?",
+      "answer": "The portfolio presents community building experience in a Finance context, including community growth, content cadence, event hooks, moderation, and feedback loops. Real KPIs should be updated from the CV for a sharper answer."
+    }
+  ]
+}
