@@ -1,7 +1,7 @@
 "use client";
 
 import { Bot, FileText, Send, X } from "lucide-react";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 
 type Locale = "en" | "vi";
 
@@ -44,6 +44,12 @@ const assistantCopy = {
       position: "Hiring position",
       input: "Ask AI about Thuan..."
     },
+    fields: {
+      name: "Full name",
+      company: "Company",
+      email: "Email",
+      position: "Hiring position"
+    },
     sendCv: "Send CV",
     receiveCv: "Receive CV",
     close: "Close assistant",
@@ -64,6 +70,12 @@ const assistantCopy = {
       email: "Email",
       position: "Vị trí tuyển dụng",
       input: "Hỏi AI về Thuan..."
+    },
+    fields: {
+      name: "Họ tên",
+      company: "Công ty",
+      email: "Email",
+      position: "Vị trí tuyển dụng"
     },
     sendCv: "Gửi CV",
     receiveCv: "Nhận CV",
@@ -96,10 +108,15 @@ export function AiRecruiterAssistant({ locale }: AiRecruiterAssistantProps) {
   const [messages, setMessages] = useState<Message[]>([
     { role: "assistant", content: assistantCopy.en.greeting }
   ]);
+  const messagesRef = useRef<HTMLDivElement>(null);
   const t = assistantCopy[locale];
 
   const canSubmitLead = useMemo(
-    () => Object.values(lead).every((value) => value.trim().length > 1),
+    () =>
+      lead.name.trim().length > 1 &&
+      lead.company.trim().length > 1 &&
+      /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(lead.email.trim()) &&
+      lead.position.trim().length > 1,
     [lead]
   );
 
@@ -117,6 +134,19 @@ export function AiRecruiterAssistant({ locale }: AiRecruiterAssistantProps) {
     setLead(emptyLead);
     setLeadMode(false);
   }, [locale]);
+
+  useEffect(() => {
+    if (!leadMode) return;
+
+    const frame = window.requestAnimationFrame(() => {
+      messagesRef.current?.scrollTo({
+        top: messagesRef.current.scrollHeight,
+        behavior: "smooth"
+      });
+    });
+
+    return () => window.cancelAnimationFrame(frame);
+  }, [leadMode]);
 
   async function sendMessage() {
     const message = input.trim();
@@ -211,7 +241,7 @@ export function AiRecruiterAssistant({ locale }: AiRecruiterAssistantProps) {
             </button>
           </div>
 
-          <div className="flex-1 space-y-3 overflow-y-auto px-4 py-4">
+          <div ref={messagesRef} className="flex-1 space-y-3 overflow-y-auto px-4 py-4">
             {messages.map((message, index) => (
               <div
                 key={`${message.role}-${index}`}
@@ -245,13 +275,19 @@ export function AiRecruiterAssistant({ locale }: AiRecruiterAssistantProps) {
             {leadMode ? (
               <div className="space-y-2 rounded-lg border border-ink/10 bg-white p-3 dark:border-white/10 dark:bg-white/5">
                 {(["name", "company", "email", "position"] as const).map((field) => (
-                  <input
-                    key={field}
-                    value={lead[field]}
-                    onChange={(event) => setLead((current) => ({ ...current, [field]: event.target.value }))}
-                    placeholder={t.placeholders[field]}
-                    className="h-10 w-full rounded-md border border-ink/10 bg-paper px-3 text-sm text-slate-950 outline-none placeholder:text-slate-500 focus:border-[#e4572e] dark:border-white/10 dark:bg-white dark:text-slate-950"
-                  />
+                  <label key={field} className="block space-y-1.5">
+                    <span className="text-xs font-semibold text-ink/80 dark:text-paper/80">
+                      {t.fields[field]} <span className="text-red-600">*</span>
+                    </span>
+                    <input
+                      type={field === "email" ? "email" : "text"}
+                      required
+                      value={lead[field]}
+                      onChange={(event) => setLead((current) => ({ ...current, [field]: event.target.value }))}
+                      placeholder={t.placeholders[field]}
+                      className="h-10 w-full rounded-md border border-ink/10 bg-paper px-3 text-sm text-slate-950 outline-none placeholder:text-slate-500 focus:border-[#e4572e] dark:border-white/10 dark:bg-white dark:text-slate-950"
+                    />
+                  </label>
                 ))}
                 <button
                   onClick={requestCv}
