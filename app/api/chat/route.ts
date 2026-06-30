@@ -7,6 +7,17 @@ type ChatMessage = {
   content: string;
 };
 
+function detectMessageLocale(message: string, fallback: Locale): Locale {
+  const normalized = message.toLowerCase();
+  const hasVietnameseCharacters = /[ăâđêôơưàáạảãầấậẩẫằắặẳẵèéẹẻẽềếệểễìíịỉĩòóọỏõồốộổỗờớợởỡùúụủũừứựửữỳýỵỷỹ]/i.test(normalized);
+  const vietnameseWords = /\b(?:anh|chị|em|tôi|mình|bạn|của|về|với|cho|thông tin|kinh nghiệm|kỹ năng|dự án|tuyen dung|thuan|gui cv|nhan cv)\b/i;
+  const englishWords = /\b(?:hello|hi|please|tell|about|your|his|experience|skills|projects|resume|send|receive|thank|thanks)\b/i;
+
+  if (hasVietnameseCharacters || vietnameseWords.test(normalized)) return "vi";
+  if (englishWords.test(normalized)) return "en";
+  return fallback;
+}
+
 export async function POST(request: Request) {
   const { message, locale = "en", history = [] } = (await request.json()) as {
     message?: string;
@@ -14,6 +25,7 @@ export async function POST(request: Request) {
     history?: ChatMessage[];
   };
   const safeLocale: Locale = locale === "vi" ? "vi" : "en";
+  const responseLocale = detectMessageLocale(message || "", safeLocale);
   const safeHistory = history
     .filter(
       (item): item is ChatMessage =>
@@ -33,7 +45,7 @@ export async function POST(request: Request) {
   }
 
   if (!process.env.OPENAI_API_KEY) {
-    return NextResponse.json({ answer: localAnswer(message, safeLocale) });
+    return NextResponse.json({ answer: localAnswer(message, responseLocale) });
   }
 
   const client = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
@@ -47,7 +59,9 @@ export async function POST(request: Request) {
         content: `You are Thuan's portfolio AI assistant.
 
 Style:
-- Reply in ${safeLocale === "vi" ? "natural Vietnamese" : "natural English"}.
+- Detect the language of the user's latest message and reply in that same language.
+- If the latest message is too short or language-neutral to identify, continue in ${responseLocale === "vi" ? "Vietnamese" : "English"}.
+- The user may switch languages between turns. Follow the latest message naturally.
 - Sound warm, direct, and conversational, like a helpful assistant in a chat window.
 - Do not repeat a fixed greeting after the first turn.
 - Do not sound like a script, brochure, or FAQ page.
@@ -62,7 +76,7 @@ Rules:
       },
       {
         role: "system",
-        content: `Selected language: ${safeLocale}\nPortfolio knowledge base:\n${getPortfolioKnowledge(safeLocale)}`
+        content: `Interface language: ${safeLocale}. Expected response language for this turn: ${responseLocale}.\nPortfolio knowledge base:\n${getPortfolioKnowledge(responseLocale)}`
       },
       ...safeHistory.map((item) => ({
         role: item.role,
@@ -73,6 +87,6 @@ Rules:
   });
 
   return NextResponse.json({
-    answer: response.choices[0]?.message.content || localAnswer(message, safeLocale)
+    answer: response.choices[0]?.message.content || localAnswer(message, responseLocale)
   });
 }

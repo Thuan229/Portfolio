@@ -73,6 +73,20 @@ const assistantCopy = {
   }
 };
 
+function detectMessageLocale(message: string, fallback: Locale): Locale {
+  const normalized = message.toLowerCase();
+  if (
+    /[ăâđêôơưàáạảãầấậẩẫằắặẳẵèéẹẻẽềếệểễìíịỉĩòóọỏõồốộổỗờớợởỡùúụủũừứựửữỳýỵỷỹ]/i.test(normalized) ||
+    /\b(?:anh|chị|em|tôi|mình|bạn|của|về|với|cho|thông tin|kinh nghiệm|kỹ năng|dự án|tuyen dung|thuan|gui cv|nhan cv)\b/i.test(normalized)
+  ) {
+    return "vi";
+  }
+  if (/\b(?:hello|hi|please|tell|about|experience|skills|projects|resume|send|receive|thank|thanks)\b/i.test(normalized)) {
+    return "en";
+  }
+  return fallback;
+}
+
 export function AiRecruiterAssistant({ locale }: AiRecruiterAssistantProps) {
   const [open, setOpen] = useState(false);
   const [input, setInput] = useState("");
@@ -113,8 +127,12 @@ export function AiRecruiterAssistant({ locale }: AiRecruiterAssistantProps) {
     setInput("");
 
     if (/(send|request|get|receive|gui|gửi|nhận).{0,16}(cv|resume|profile|ho so|hồ sơ)|(cv|resume).{0,16}(send|request|get|receive|gui|gửi|nhận)/i.test(message)) {
+      const messageLocale = detectMessageLocale(message, locale);
       setLeadMode(true);
-      setMessages((current) => [...current, { role: "assistant", content: t.requestLead }]);
+      setMessages((current) => [
+        ...current,
+        { role: "assistant", content: assistantCopy[messageLocale].requestLead }
+      ]);
       return;
     }
 
