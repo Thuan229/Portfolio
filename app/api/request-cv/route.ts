@@ -89,6 +89,80 @@ Tran Minh Thuan
 Product & Growth Marketing Specialist`;
 }
 
+function escapeHtml(value: string) {
+  return value.replace(
+    /[&<>"']/g,
+    (character) =>
+      ({
+        "&": "&amp;",
+        "<": "&lt;",
+        ">": "&gt;",
+        '"': "&quot;",
+        "'": "&#039;"
+      })[character] || character
+  );
+}
+
+function buildEmailHtml({
+  locale,
+  company,
+  position,
+  portfolioUrl
+}: {
+  locale: Locale;
+  company: string;
+  position: string;
+  portfolioUrl: string;
+}) {
+  const safeCompany = escapeHtml(company);
+  const safePosition = escapeHtml(position);
+  const safePortfolioUrl = escapeHtml(portfolioUrl);
+  const shell = (content: string) => `
+    <div style="margin:0;padding:0;background:#ffffff;color:#202124;font-family:Arial,Helvetica,sans-serif;font-size:15px;line-height:1.65">
+      <div style="max-width:720px;margin:0;padding:8px 4px">
+        ${content}
+      </div>
+    </div>`;
+
+  if (locale === "vi") {
+    return shell(`
+      <p style="margin:0 0 18px">Kính gửi Anh/Chị Đại diện Tuyển dụng,</p>
+      <p style="margin:0 0 18px">Em là <strong>Trần Minh Thuận</strong>, chuyên môn <strong>Product Marketing &amp; Growth Marketing</strong>. Em xin gửi đến Anh/Chị hồ sơ ứng tuyển cho vị trí <strong>${safePosition}</strong> tại <strong>${safeCompany}</strong>.</p>
+      <p style="margin:0 0 18px">Sau khi tìm hiểu về công việc và định hướng phát triển của doanh nghiệp, em nhận thấy kinh nghiệm và thế mạnh của mình có nhiều điểm phù hợp với vị trí này. Em đã tham gia các dự án trong lĩnh vực <strong>Fintech, EdTech và ERP</strong>, tập trung vào tăng trưởng người dùng, phát triển cộng đồng, tối ưu kênh nội dung và hỗ trợ phát triển sản phẩm.</p>
+      <p style="margin:0 0 8px"><strong>Một số kinh nghiệm nổi bật của em gồm:</strong></p>
+      <ul style="margin:0 0 18px;padding-left:24px">
+        <li style="margin:0 0 8px">Phát triển cộng đồng người dùng từ <strong>36.000 lên 80.000 thành viên</strong> tại Infina và từ <strong>7.000 lên 15.000 thành viên</strong> tại Vietnam Personal Finance.</li>
+        <li style="margin:0 0 8px">Triển khai <strong>SEO, Content Marketing và Community Marketing</strong>, góp phần tăng <strong>20% lượng truy cập website trong 3 tháng</strong>.</li>
+        <li style="margin:0 0 8px">Tổ chức webinar, diễn đàn chuyên ngành và livestream với <strong>hàng trăm người tham gia</strong>, gia tăng nhận diện thương hiệu và tương tác khách hàng.</li>
+        <li style="margin:0 0 8px">Quản lý dữ liệu, phân nhóm người dùng và hỗ trợ các chiến dịch <strong>Email Marketing, CRM và Customer Retention</strong>.</li>
+        <li style="margin:0">Nghiên cứu thị trường, đối thủ và hành vi người dùng để đề xuất sáng kiến tăng trưởng và cải thiện trải nghiệm khách hàng.</li>
+      </ul>
+      <p style="margin:0 0 18px">Bên cạnh Marketing, em có nền tảng về <strong>công nghệ và phân tích dữ liệu</strong>, giúp em làm việc hiệu quả với sản phẩm số, theo dõi hiệu quả chiến dịch và phối hợp cùng các đội ngũ Product, Business và Development.</p>
+      <p style="margin:0 0 18px">CV được đính kèm trong email. Anh/Chị có thể xem thêm các dự án em đã thực hiện tại:<br><strong>Portfolio:</strong> <a href="${safePortfolioUrl}" style="color:#1155cc">${safePortfolioUrl}</a></p>
+      <p style="margin:0 0 18px">Em rất mong có cơ hội tham gia phỏng vấn để trao đổi chi tiết hơn về cách em có thể đóng góp vào mục tiêu tăng trưởng và phát triển sản phẩm của Quý Công ty.</p>
+      <p style="margin:0 0 18px">Em xin chân thành cảm ơn Anh/Chị đã dành thời gian xem xét hồ sơ.</p>
+      <p style="margin:0">Trân trọng,<br><strong>Trần Minh Thuận</strong><br>Product &amp; Growth Marketing Specialist</p>`);
+  }
+
+  return shell(`
+    <p style="margin:0 0 18px">Dear Hiring Representative,</p>
+    <p style="margin:0 0 18px">My name is <strong>Tran Minh Thuan</strong>, specializing in <strong>Product Marketing &amp; Growth Marketing</strong>. I am pleased to submit my application for the <strong>${safePosition}</strong> position at <strong>${safeCompany}</strong>.</p>
+    <p style="margin:0 0 18px">After learning about the role and your company's direction, I believe my experience aligns well with this opportunity. I have contributed to <strong>Fintech, EdTech, and ERP</strong> projects focused on user growth, community development, content optimization, and product support.</p>
+    <p style="margin:0 0 8px"><strong>Highlights of my experience include:</strong></p>
+    <ul style="margin:0 0 18px;padding-left:24px">
+      <li style="margin:0 0 8px">Growing communities from <strong>36,000 to 80,000 members</strong> at Infina and from <strong>7,000 to 15,000 members</strong> at Vietnam Personal Finance.</li>
+      <li style="margin:0 0 8px">Delivering <strong>SEO, Content Marketing, and Community Marketing</strong> initiatives that increased website traffic by <strong>20% within 3 months</strong>.</li>
+      <li style="margin:0 0 8px">Organizing webinars, industry forums, and livestreams with <strong>hundreds of participants</strong> to strengthen brand awareness and customer engagement.</li>
+      <li style="margin:0 0 8px">Managing customer data, user segmentation, and <strong>Email Marketing, CRM, and Customer Retention</strong> campaigns.</li>
+      <li style="margin:0">Conducting market, competitor, and user behavior research to propose growth initiatives and improve customer experience.</li>
+    </ul>
+    <p style="margin:0 0 18px">Alongside Marketing, my background in <strong>technology and data analysis</strong> helps me work effectively with digital products, measure campaign performance, and collaborate across Product, Business, and Development teams.</p>
+    <p style="margin:0 0 18px">My CV is attached to this email. You can also view selected projects at:<br><strong>Portfolio:</strong> <a href="${safePortfolioUrl}" style="color:#1155cc">${safePortfolioUrl}</a></p>
+    <p style="margin:0 0 18px">I would welcome an opportunity to discuss how I can contribute to your company's product and growth goals.</p>
+    <p style="margin:0 0 18px">Thank you for your time and consideration.</p>
+    <p style="margin:0">Best regards,<br><strong>Tran Minh Thuan</strong><br>Product &amp; Growth Marketing Specialist</p>`);
+}
+
 export async function POST(request: Request) {
   const body = (await request.json()) as CvRequest;
   const locale: Locale = body.locale === "vi" ? "vi" : "en";
@@ -109,6 +183,12 @@ export async function POST(request: Request) {
     position,
     portfolioUrl: siteUrl,
     cvPublicUrl
+  });
+  const emailHtmlBody = buildEmailHtml({
+    locale,
+    company,
+    position,
+    portfolioUrl: siteUrl
   });
 
   if (missing.length) {
@@ -152,6 +232,7 @@ export async function POST(request: Request) {
         to: recruiterEmail,
         subject: emailSubject,
         textBody: emailTextBody,
+        htmlBody: emailHtmlBody,
         cvFileName,
         cvPublicUrl,
         portfolioUrl: siteUrl

@@ -45,6 +45,7 @@ const assistantCopy = {
       input: "Ask AI about Thuan..."
     },
     sendCv: "Send CV",
+    receiveCv: "Receive CV",
     close: "Close assistant",
     open: "Open AI recruiter assistant",
     send: "Send message"
@@ -65,6 +66,7 @@ const assistantCopy = {
       input: "Hỏi AI về Thuan..."
     },
     sendCv: "Gửi CV",
+    receiveCv: "Nhận CV",
     close: "Đóng assistant",
     open: "Mở AI recruiter assistant",
     send: "Gửi tin nhắn"
@@ -205,6 +207,22 @@ export function AiRecruiterAssistant({ locale }: AiRecruiterAssistantProps) {
               </div>
             ))}
             {loading ? <p className="text-sm text-ink/60 dark:text-paper/60">{t.loading}</p> : null}
+
+            {!leadMode ? (
+              <button
+                onClick={() => {
+                  setLeadMode(true);
+                  setMessages((current) => [
+                    ...current,
+                    { role: "assistant", content: t.requestLead }
+                  ]);
+                }}
+                className="flex h-10 items-center gap-2 rounded-md border border-[#e4572e]/30 bg-[#e4572e]/10 px-4 text-sm font-semibold text-[#c94420] transition hover:bg-[#e4572e]/15 dark:text-[#ff8a68]"
+              >
+                <FileText size={16} />
+                {t.receiveCv}
+              </button>
+            ) : null}
 
             {leadMode ? (
               <div className="space-y-2 rounded-lg border border-ink/10 bg-white p-3 dark:border-white/10 dark:bg-white/5">
